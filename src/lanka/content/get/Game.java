@@ -5,47 +5,54 @@
  */
 package lanka.content.get;
 
-import java.sql.ResultSet;
-import lanka.db.MaharajaDb;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lanka.content.domain.ContentDes;
+
 
 /**
  *
  * @author Kunal
  */
 public class Game extends Content{
-     MaharajaDb db =null;
+   
 
     public Game() {
-        db = MaharajaDb.create();
+        
     }
     
     
     @Override
-    ResultSet getContentPriceWise(String price, String limit) {
-         String sql  = "select code,prv,pricetag from Game_s where pricetag like '"+price+"'  order by rand() limit "+limit+"";
-        ResultSet rs  = db.selectData(sql);
-        return rs;
+    public List<ContentDes> getContentPriceWise(String price, int limit) {
+         String sql  = "select code,prv,pricetag from Game where pricetag like '"+price+"'  order by rand() limit "+limit+"";
+         List<ContentDes> contentDes_ls  = new ArrayList<ContentDes>();
+         contentDes_ls =  getContentDes(sql,limit);
+ 	    return contentDes_ls;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    ResultSet getContentCatWise(String cat,String limit) {
-         String sql  = "select code,prv,pricetag from Game_s where cat like '"+cat+"' order by rand() limit "+limit+"";
-        ResultSet rs  = db.selectData(sql);
-        return rs;
+    public List<ContentDes> getContentCatWise(String cat,int limit) {
+         String sql  = "select code,prv,pricetag from Game where cat like '"+cat+"' order by rand() limit "+limit+"";
+         List<ContentDes> contentDes_ls  = new ArrayList<ContentDes>();
+         contentDes_ls =  getContentDes(sql,limit);
+ 	    return contentDes_ls;
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      @Override
-    ResultSet getRandomContent(String limit) {
-          String sql  = "select code,prv,pricetag from Game_s order by rand() limit "+limit+"";
-        ResultSet rs  = db.selectData(sql);
-        return rs;
+     public  List<ContentDes> getRandomContent(int limit) {
+          String sql  = "select code,prv,pricetag from Game order by rand() limit "+limit+"";
+          List<ContentDes> contentDes_ls  = new ArrayList<ContentDes>();
+          contentDes_ls =  getContentDes(sql,limit);
+  	    return contentDes_ls;
      }
 
-    @Override
+/*    @Override
     ResultSet getDistinctCat() {
-       String sql  = "select distinct(cat) from Game_s order by rand()";
+       String sql  = "select distinct(cat) from Game order by rand()";
         ResultSet rs  = db.selectData(sql);
         return rs;
-    }
+    }*/
 }

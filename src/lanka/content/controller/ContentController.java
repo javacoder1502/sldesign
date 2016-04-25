@@ -2,13 +2,15 @@ package lanka.content.controller;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
+import lanka.content.domain.ContentDes;
 import lanka.content.domain.LanguageDropDown;
-
-
-
-
+import lanka.content.get.Content;
+import lanka.content.get.GetContent;
+import lanka.content.get.Wallpaper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -57,6 +59,13 @@ public class ContentController {
 		System.out.println("Local_language is "+str);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("sriWap");
+		  GetContent gc = new GetContent();
+		  
+		
+		  List<ContentDes> contentDes_ls  = new ArrayList<ContentDes>();
+		  contentDes_ls  = gc.getRandomContent("wallpaper", 3);
+		
+		
 		return modelAndView;
 	}
 	

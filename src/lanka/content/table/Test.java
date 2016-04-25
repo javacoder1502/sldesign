@@ -6,7 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 
-import vodafone.content.utility.HibernateUtil;
+import lanka.content.utility.HibernateUtil;
 
 public class Test {
 
