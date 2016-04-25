@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page pageEncoding="utf-8"%>
 <section class="search-bar">
 	<section class="row">
@@ -35,17 +36,19 @@
 
 					<div class="set">
 						<select style="float: right; padding: 5px;">
-							<option>English</option>
-							<option>Tamil</option>
-							<option>Sinhala</option>
-						</select>
+
+							<c:forEach items="${Lang_DropDown}" var="item">
+								<option value="${item}"
+									${not empty lang_select_param && lang_select_param == item ? 'selected' : ''}>
+									<c:out value=" ${item}"></c:out> 
+									<%-- <spring:message code="${item}" /> --%>
+								</option>
+							</c:forEach>
+                        </select>
 
 					</div>
 
-
-
-
-				</section>
+             </section>
 				<section class="logoT">
 					<img src="<c:url value="/resources/images/Tesync.png" />" />
 				</section>
@@ -96,30 +99,43 @@
 	<ul class="navbar">
 		<li id="home"><a href="sriWap.jsp?cli=home">
 				<div class="newboxes" id="newboxes1">
-					<span>Home</span>
+				
+					<span>
+					<spring:message code="Home"/>
+					</span>
 				</div>
 		</a></li>
 		<li id="img"><a href="wallpaper.jsp?cli=img"><div
 					class="newboxes" id="newboxes1">
-					<span>Images</span>
+					<span>
+					<spring:message code="Images"/>
+					</span>
 				</div> </a></li>
 		<li id="vid"><a href="video.jsp?cli=vid"><div
 					class="newboxes" id="newboxes1">
-					<span>Videos</span>
+					<span><spring:message code="Videos"/>
+					</span>
 				</div> </a></li>
 		<li id="anim"><a href="animation.jsp?cli=anim">
 				<div class="newboxes" id="newboxes1">
-					<span>Animations</span>
+					<span>
+					<spring:message code="Animations"/>
+					</span>
 				</div>
 
 		</a></li>
 		<li id="game"><a href="game.jsp?cli=game"><div
 					class="newboxes" id="newboxes1">
-					<span>Games</span>
+					<span>
+					<spring:message code="Games"/>
+					
+					</span>
 				</div> </a></li>
 		<li id="music"><a href="ring.jsp?cli=music"><div
 					class="newboxes" id="newboxes1">
-					<span>Music</span>
+					<span>
+					<spring:message code="Music"/>
+					</span>
 				</div> </a></li>
 	</ul>
 </section>

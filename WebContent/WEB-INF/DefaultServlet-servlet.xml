@@ -14,16 +14,18 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<mvc:annotation-driven />
 	<mvc:annotation-driven enable-matrix-variables="true" />
 	<context:component-scan base-package="lanka.content.controller" />
-	<!-- <context:component-scan base-package="vodafone.content.DownloadController" />  -->
+	<context:component-scan base-package="lanka.content.domain" />
 
-
-	<bean
+     <bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+<!-- start of languages xml code -->
 
+
+<!-- lang param is defined in the mvc interceptor -->
 
  	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -37,6 +39,9 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 		<property name="defaultLocale" value="en" />
 		
 	</bean>
+	
+
+	<!-- end of languages xml code -->
 
  	<mvc:interceptors>
 		<mvc:interceptor>
@@ -47,6 +52,9 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 			<property name="paramName" value="lang" />
 		</bean>
 		</mvc:interceptor>
+		
+		
+		
 		
 		<!-- <mvc:interceptor>
 			<mvc:mapping path="/**" />
