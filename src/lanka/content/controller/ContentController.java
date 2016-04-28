@@ -23,9 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ContentController {
 
-
-	@Autowired
+    @Autowired
 	LanguageDropDown languageDropDown;
+	@Autowired
+	GetContent gc;
 	
 	/*
 	 * Adding the common variable  "language_common_param" to the model
@@ -59,29 +60,27 @@ public class ContentController {
 		System.out.println("Local_language is "+str);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("sriWap");
-		  GetContent gc = new GetContent();
-		  
-		
-		  List<ContentDes> contentDes_ls  = new ArrayList<ContentDes>();
-		  contentDes_ls  = gc.getRandomContent("wallpaper", 3);
-		
-		
+		List<ContentDes> contentDes_ls  = new ArrayList<ContentDes>();
+		contentDes_ls  = gc.getRandomContent("wallpaper", 3);
 		return modelAndView;
 	}
-	
-	
-	
+
 	@RequestMapping("/contentCat")
 	public ModelAndView content_cat_desc(){
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("ContentCatDesc", gc.getContentCatDesc("wallpaper"));
 		modelAndView.setViewName("content_cat_desc");
 		return modelAndView;
 	}
 	
 	
-	@RequestMapping("/content")
+	@RequestMapping("/Wallpaper")
 	public ModelAndView content(){
 		ModelAndView modelAndView = new ModelAndView();
+		List<String> cat_list = gc.getDistinctCat("wallpaper");
+		System.out.println("in controller "+cat_list);
+		modelAndView.addObject("cat_list", cat_list);
+		modelAndView.addObject("ContentDes", gc.getRandomContent("wallpaper", 9));
 		modelAndView.setViewName("content");
 		return modelAndView;
 	}

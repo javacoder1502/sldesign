@@ -23,18 +23,38 @@
               <jsp:include page="/WEB-INF/headers/header.jsp" />
                 <section class="container">
                 <section class="sri-area">
-                  <jsp:include page="/WEB-INF/headers/animationCat.jsp" />
+                  <jsp:include page="/WEB-INF/headers/distinctCat.jsp" />
+                  
+                  
                    <div id="wait">
+                   
+                   
+                 
                    <section class="row">
-                            <section class="cat-wall">
+                    <section class="cat-wall">
+                    
+                    
+                     <c:forEach items="${ContentDes}" var ="contentDes">
+                           
                               <section class="col-md-4 col-xs-4">
                                     <section class="wall-pic">
-                                        <input type="image" src="" style="max-width:130px; width:100%;" />
+
+ 
+   <img src="<c:url value="../m4u/CMS/Preview/${contentDes.content_prv}" />" style="max-width:130px; width:100%;"/>  
+ 	 
+ 	 
+ 	 <%-- <input type="image" src="<c:url value="../m4u/CMS/Preview/${contentDes.content_prv}" />"
+ 	  style="max-width:130px; width:100%;"/> --%>
 
                                     </section>
                                 </section>
-                         </section>
-                                 </section>
+                  
+                    
+                    </c:forEach>
+                      </section>
+                  </section>
+                  
+                  
                     </div>
 
 <jsp:include page="/WEB-INF/footer/footer.jsp" />

@@ -35,7 +35,8 @@
 				<section class="trans">
 
 					<div class="set">
-						<select style="float: right; padding: 5px;">
+					<form action="index">
+						<select style="float: right; padding: 5px;" name ="lang">
 
 							<c:forEach items="${Lang_DropDown}" var="item">
 								<option value="${item}"
@@ -45,7 +46,7 @@
 								</option>
 							</c:forEach>
                         </select>
-
+                   </form>
 					</div>
 
              </section>
@@ -54,6 +55,8 @@
 				</section>
 			</section>
 		</section>
+		
+		
 	</section>
 </section>
 <br>

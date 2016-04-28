@@ -8,8 +8,8 @@ package lanka.content.get;
 import java.util.ArrayList;
 import java.util.List;
 
+import lanka.content.dao.HibernateOperations;
 import lanka.content.domain.ContentDes;
-import lanka.content.utility.HibernateOperations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,22 +26,14 @@ public abstract  class Content {
 	
 	@Transactional
 	public List<ContentDes> getContentDes(String sql,int limit){
-		
-		//do it with autowired
-	
-		
 		List<Object[]> ls  = new ArrayList<Object[]>();
 		List<ContentDes> contentDes_ls  = new ArrayList<ContentDes>();
-		
-		System.out.println("--before invoking method---");
-		ho.just_print();
-		
 		ls = ho.getResultListByLimit(sql,limit);
-		
-		
-		 for(Object[] obj: ls){
+		for(Object[] obj: ls){
 		       ContentDes contentDes = new ContentDes();
-		         contentDes.setCode((String)obj[0]);
+		       Integer in =(Integer)obj[0];
+		       
+		         contentDes.setCode(in.toString());
 		         contentDes.setContent_prv((String)obj[1]);
 		         contentDes.setPricetag((String)obj[2]);
 		         contentDes_ls.add(contentDes);
@@ -50,9 +42,24 @@ public abstract  class Content {
 		
 	}
 	
+	public List<String> getCat(String sql){
+		   List<Object> ls  = new ArrayList<Object>();
+			List<String> ls_s  = new ArrayList<String>();
+			ho.just_print();
+			ls = ho.getListForSingleColumn(sql);
+			for(Object obj: ls){
+				 ls_s.add((String)obj);
+				 
+		      }
+			 return ls_s;
+	}
+	
+	
+	
+	
   public  abstract List<ContentDes> getContentPriceWise(String price,int limit);
   public abstract List<ContentDes> getContentCatWise(String cat,int limit);
   public abstract List<ContentDes> getRandomContent(int limit);
-    //abstract List<ContentDes> getDistinctCat();
+  abstract List<String> getDistinctCat();
     
 }

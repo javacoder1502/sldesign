@@ -1,4 +1,4 @@
-package lanka.content.utility;
+package lanka.content.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 
-@Repository
+/*@Repository*/
 public class HibernateOperations {
 	private SessionFactory sessionFactory;
 	
@@ -23,21 +23,36 @@ public class HibernateOperations {
 		
 		System.out.println("in get result-------");
 		
-		    Session session = this.sessionFactory.getCurrentSession();
+		 Session session = this.sessionFactory.openSession();
+		
+		   /* Session session = this.sessionFactory.getCurrentSession();*/
 			List<Object[]> ls_ob = new ArrayList<Object[]>();
 			Query q = session.createQuery(query);
 	         q.setMaxResults(limit);
 			ls_ob  = (List<Object[]>)q.list();
+			session.close();
 			return ls_ob;
 
 }
 			
 			
  public List<Object> getListForSingleColumn(String query){
-		Session session = this.sessionFactory.getCurrentSession();
-	      List<Object> ls_ob = new ArrayList<Object>();
+	 List<Object> ls_ob = new ArrayList<Object>();
+	 
+		
+	
+	 Session session = this.sessionFactory.openSession();
+		/*Session session = this.sessionFactory.getCurrentSession();*/
+	     System.out.println("step--1 in getListForSingleColumn");
 		    Query q = session.createQuery(query);
+		    System.out.println("step--2 in getListForSingleColumn");
 	        ls_ob  = q.list();
+	        session.close();
+	        System.out.println("step--3 in getListForSingleColumn");
+	 
+	
+	
+	 System.out.println("returning in getListForSingleColumn");
 			return ls_ob;
 		}
 

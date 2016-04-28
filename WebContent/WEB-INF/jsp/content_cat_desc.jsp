@@ -46,49 +46,51 @@
 								<section class="cat-area">
 									<section class="row">
 
+										<c:forEach items="${ContentCatDesc}" var="ContentCatDesc">
 
-
-										<section class="cat-head">
-											<section class="col-md-6 col-xs-6">
-												<div class="newboxes" id="newboxes1">
-													<h3 style="text-align: left;">Hollywood Stars</h3>
-												</div>
-
-											</section>
-
-											<section class="col-md-6 col-xs-6">
-												<a href="animation_cat.jsp?cat_type=Hollywood Stars"
-													style="padding: 0px;">
+											<section class="cat-head">
+												<section class="col-md-6 col-xs-6">
 													<div class="newboxes" id="newboxes1">
-														<p
-															style="text-align: right; color: #E34043; font-weight: bold;">View
-															All</p>
+														<h3 style="text-align: left;">${ContentCatDesc.cat_name}</h3>
 													</div>
-												</a>
 
+												</section>
+
+												<section class="col-md-6 col-xs-6">
+													<a href="animation_cat.jsp?cat_type=Hollywood Stars"
+														style="padding: 0px;">
+														<div class="newboxes" id="newboxes1">
+															<p
+																style="text-align: right; color: #E34043; font-weight: bold;">View
+																All</p>
+														</div>
+													</a>
+
+												</section>
 											</section>
-										</section>
 
-										<section class="cat-set">
-											<%
-                                                String path = "../m4u/CMS/Preview/";
-                                                String image_name = "Animation/Jennifer_Lopez_14.gif";
+											<section class="cat-set">
+												<%
+													String path = "../m4u/CMS/Preview/";
+														String image_name = "Animation/Jennifer_Lopez_14.gif";
+												%>
+												<section class="col-md-4 col-xs-4">
+													<img
+														src='<c:url value="${ContentCatDesc.image_prv_name}"></c:url>' />
+												</section>
+												<section class="col-md-8 col-xs-8">
+													<!-- <p class="cata">Famous Hollywood Stars & Divas</p>-->
 
-                                            %>
-											<section class="col-md-4 col-xs-4">
-												<img src="<%=path + image_name%>" />
+
+													<div class="newboxes" id="newboxes1">
+														<p class="cata">${ContentCatDesc.cat_desc}</p>
+													</div>
+
+
+												</section>
 											</section>
-											<section class="col-md-8 col-xs-8">
-												<!--                                                <p class="cata">Famous Hollywood Stars & Divas</p>-->
 
-
-												<div class="newboxes" id="newboxes1">
-													<p class="cata">Famous Hollywood Stars & Divas</p>
-												</div>
-
-
-											</section>
-										</section>
+										</c:forEach>
 
 									</section>
 								</section>
@@ -129,15 +131,14 @@
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script>
-$(function() {
- $(".navi li").on("click", function() {
-   $(".navi li").removeClass("active");
-   $(this).addClass("active");
- });
- 
-});
+			$(function() {
+				$(".navi li").on("click", function() {
+					$(".navi li").removeClass("active");
+					$(this).addClass("active");
+				});
 
-</script>
+			});
+		</script>
 		<script src="<c:url value="/resources/scripts/bootstrap.js" />"></script>
 		<script src="<c:url value="/resources/scripts/change.js" />"></script>
 	</div>

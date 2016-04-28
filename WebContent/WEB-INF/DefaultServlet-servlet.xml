@@ -23,6 +23,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 	<context:component-scan base-package="lanka.content.controller" />
 	<context:component-scan base-package="lanka.content.domain" />
 	<context:component-scan base-package="lanka.content.utility" />
+	<context:component-scan base-package="lanka.content.get" />
 
      <bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -86,6 +87,8 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 		<property name="url" value="jdbc:mysql://localhost:3306/wapsite" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
+		
+		
 	</bean>
 
 
@@ -101,6 +104,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 				<value>lanka.content.table.Scrsaver</value>
 				<value>lanka.content.table.Video</value>
 				<value>lanka.content.table.Wallpaper</value>
+				<value>lanka.content.table.ContentCatDesc</value>
 				
 			
 				
@@ -128,7 +132,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 	</bean>-->
 	
 	
-		<bean id="HibernateOperations" class="lanka.content.utility.HibernateOperations">
+		<bean id="HibernateOperations" class="lanka.content.dao.HibernateOperations">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean> 
 	

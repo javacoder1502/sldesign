@@ -5,32 +5,54 @@
  */
 package lanka.content.get;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author Kunal
  */
+@Component
 public class GetContentFactory {
+	
+	@Autowired
+	public Wallpaper wallpaper;
+	@Autowired
+	public Animation animation;
+	@Autowired
+	public Game game;
+	@Autowired
+	public Ringtone ringtone;
+	@Autowired
+	public Video video;
+	
+	
+	
 
-    //use getContent method to get object of type Content   
+
+
+
+	//use getContent method to get object of type Content   
     public Content getContent(String contentType) {
+    	
         contentType = contentType.toLowerCase();
 
         if (contentType.equalsIgnoreCase("wallpaper")) {
-            System.out.println(" returning wallpaper class object");
-            return new Wallpaper();
+          
+            return getWallpaper();
         } else if (contentType.equalsIgnoreCase("animation")) {
-            System.out.println(" returning animation class object");
-            return new Animation();
+           
+            return getAnimation();
         } else if (contentType.equalsIgnoreCase("ringtone")) {
-            System.out.println(" returning animation class object");
-            return new Ringtone();
+           
+            return  getRingtone();
         } else if (contentType.equalsIgnoreCase("video")) {
-            System.out.println(" returning animation class object");
-            return new Video();
+            
+            return  getVideo();
         } 
         else if (contentType.equalsIgnoreCase("game")) {
-            System.out.println(" returning animation class object");
-            return new Game();
+            
+            return  getGame();
         }
         else {
             System.out.println(" unknow request  in GetContentFactory class");
@@ -58,4 +80,41 @@ public class GetContentFactory {
 //        }
         return null;
     }
+    
+    
+    
+    
+
+
+    public Wallpaper getWallpaper() {
+		return wallpaper;
+	}
+
+
+
+
+	public Animation getAnimation() {
+		return animation;
+	}
+
+
+
+
+	public Game getGame() {
+		return game;
+	}
+
+
+
+
+	public Ringtone getRingtone() {
+		return ringtone;
+	}
+
+
+
+
+	public Video getVideo() {
+		return video;
+	}
 }//end of GetContentFactory class.
